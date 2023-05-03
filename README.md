@@ -1,8 +1,10 @@
 Sistema para controle de Estoque da matéria Projeto Integrador
 <br>
+<br>
 *PHP version: 8.x*
 <br>
 *Laravel version: 10*
+<br>
 <br>
 Alunos:
 <br>
