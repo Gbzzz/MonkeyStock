@@ -1,4 +1,4 @@
-Sistema de controle de Estoque da matéria Projeto Integrador
+Sistema para controle de Estoque da matéria Projeto Integrador
 <br>
 PHP version: 8.x
 <br>
