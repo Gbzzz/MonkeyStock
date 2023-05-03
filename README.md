@@ -1,8 +1,5 @@
-Sistema de controle de Estoque da matéria Projeto Integrador
+Sistema para controle de Estoque da matéria Projeto Integrador
 <br>
-PHP version: 8.x
-<br>
-Laravel version: 10
 <br>
 Alunos:
 <br>
@@ -15,3 +12,10 @@ Arthur Henrique Souza da Silva
 Luiz Arthur Lisboa Cirilo Torres
 <br>
 Davidson
+<br>
+<br>
+*PHP version: 8.x*
+<br>
+*Laravel version: 10*
+<br>
+*DB: mysql*
