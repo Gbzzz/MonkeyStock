@@ -17,3 +17,5 @@ Davidson
 *PHP version: 8.x*
 <br>
 *Laravel version: 10*
+<br>
+*DB: mysql*
