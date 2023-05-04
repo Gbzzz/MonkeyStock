@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\PlansController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\HelpController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -29,6 +30,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('/views', [PlansController::class, 'index'])->name('view_plans');
+Route::get('/plans', [PlansController::class, 'index'])->name('view_plans');
+
+Route::get('/help', [HelpController::class, 'index'])->name('view_help');
 
 require __DIR__.'/auth.php';

@@ -1,3 +1,8 @@
+<style>
+    h2{
+    font-family: poppinsmedium;
+}
+</style>
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
@@ -10,8 +15,9 @@
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
 
-                    <h5>Selecione seu plano:</h5>
-                    <br>
+                    <h2 style="text-align: center">Precisa de Ajuda?</h2>
+                    <h2 style="text-align: center">Entre em contato conosco</h2>
+
                     <div class="row justify-content-center align-items-center">
                         <div class="col-md-4">
                           <div class="card">
