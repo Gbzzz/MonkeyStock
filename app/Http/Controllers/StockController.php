@@ -11,4 +11,14 @@ class StockController extends Controller
 
         return view('stock.index');
     }
+
+    public function create() {
+
+        return view('stock.create');
+    }
+
+    public function store(Request $request) {
+
+        
+    }
 }
