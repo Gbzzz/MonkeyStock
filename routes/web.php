@@ -39,4 +39,6 @@ Route::get('/stock', [StockController::class, 'index'])->name('view_stock');
 
 Route::get('/stock/create', [StockController::class, 'create'])->name('stock.create');
 
+Route::post('/stock/store', [StockController::class, 'store'])->name('stock.store');
+
 require __DIR__.'/auth.php';
