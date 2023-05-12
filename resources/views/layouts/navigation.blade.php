@@ -24,6 +24,12 @@
                         {{ __('Ver Planos') }}
                     </x-nav-link>
                 </div>
+
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('view_stock')" :active="request()->routeIs('view_stock')">
+                        {{ __('Estoque') }}
+                    </x-nav-link>
+                </div>
             </div>
 
             <!-- Settings Dropdown -->
