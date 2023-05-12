@@ -3,6 +3,7 @@
 use App\Http\Controllers\PlansController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\HelpController;
+use App\Http\Controllers\StockController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -33,5 +34,9 @@ Route::middleware('auth')->group(function () {
 Route::get('/plans', [PlansController::class, 'index'])->name('view_plans');
 
 Route::get('/help', [HelpController::class, 'index'])->name('view_help');
+
+Route::get('/stock', [StockController::class, 'index'])->name('view_stock');
+
+Route::get('/stock/create', [StockController::class, 'create'])->name('stock.create');
 
 require __DIR__.'/auth.php';
