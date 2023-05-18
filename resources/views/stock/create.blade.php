@@ -60,6 +60,7 @@
                                     <option class="form-control" value="{{ $category->id }}">{{ $category->name }}</option>
                                     @endforeach
                                 </select>
+                                
                                 <a href="#" id="bt_new_category" onclick="trocarInput()">+ Nova categoria</a>
                                 <a href="#" id="bt_cancel" style="display:none;" onclick="cancelarCategoria()">Cancel</a>
 
