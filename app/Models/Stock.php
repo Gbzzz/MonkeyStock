@@ -11,9 +11,9 @@ class Stock extends Model
 {
     use HasFactory;
 
-    public function clients(): BelongsTo
+    public function user(): BelongsTo
     {
-        return $this->belongsTo(Client::class);
+        return $this->belongsTo(User::class);
     }
 
     public function products(): BelongsToMany
