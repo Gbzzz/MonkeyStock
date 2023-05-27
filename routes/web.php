@@ -41,4 +41,7 @@ Route::get('/stock/create', [StockController::class, 'create'])->name('stock.cre
 
 Route::post('/stock/store', [StockController::class, 'store'])->name('stock.store');
 
+Route::post('/category/store', [StockController::class, 'category'])->name('category.store');
+
+
 require __DIR__.'/auth.php';

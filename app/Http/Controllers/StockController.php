@@ -21,6 +21,18 @@ class StockController extends Controller
         return view('stock.create', ['categories' => $categories]);
     }
 
+    public function category(Request $request) {
+
+        $category = new Category;
+
+        $category->name = $request->new_category;
+
+        $category->save();
+
+        return redirect()->back();
+
+    }
+
     public function store(Request $request) {
 
         $product = new Product;
