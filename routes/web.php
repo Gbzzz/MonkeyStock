@@ -3,7 +3,9 @@
 use App\Http\Controllers\PlansController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\HelpController;
-use App\Http\Controllers\StockController;
+use App\Http\Controllers\Stock\StockController;
+use App\Http\Controllers\Stock\CategoryController;
+use App\Http\Controllers\Stock\SupplierController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -41,7 +43,8 @@ Route::get('/stock/create', [StockController::class, 'create'])->name('stock.cre
 
 Route::post('/stock/store', [StockController::class, 'store'])->name('stock.store');
 
-Route::post('/category/store', [StockController::class, 'category'])->name('category.store');
+Route::post('/category/store', [CategoryController::class, 'store'])->name('category.store');
 
+Route::post('/supplier/store', [SupplierController::class, 'store'])->name('supplier.store');
 
 require __DIR__.'/auth.php';

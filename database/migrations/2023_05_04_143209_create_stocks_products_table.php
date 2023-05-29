@@ -11,12 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('stocks_products', function (Blueprint $table) {
-            $table->foreignId('stocks_id')->constrained('stocks')->onDelete('cascade');
-            $table->foreignId('products_id')->constrained('products')->onDelete('cascade');
-            $table->bigInteger('balance');
-            $table->bigInteger('maximum_stock_level');
-            $table->bigInteger('minimum_stock_level');
+        Schema::create('product_stock', function (Blueprint $table) {
+            $table->foreignId('stock_id')->constrained('stocks')->onDelete('cascade');
+            $table->foreignId('product_id')->constrained('products')->onDelete('cascade');
         });
     }
 

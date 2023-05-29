@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
+use App\Models\Stock;
 
 class RegisteredUserController extends Controller
 {
@@ -45,6 +46,11 @@ class RegisteredUserController extends Controller
         event(new Registered($user));
 
         Auth::login($user);
+
+        $stock = Stock::create([
+            'user_id' => Auth::user()->id,
+            'description' => Auth::user()->name."'s stock.",
+        ]);
 
         return redirect(RouteServiceProvider::HOME);
     }

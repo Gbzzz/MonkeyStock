@@ -17,6 +17,9 @@ return new class extends Migration
             $table->string('name');
             $table->string('unit');
             $table->double('refference_value');
+            $table->bigInteger('maximum_stock_level');
+            $table->bigInteger('minimum_stock_level');
+            $table->bigInteger('balance');
             $table->timestamps();
         });
     }
