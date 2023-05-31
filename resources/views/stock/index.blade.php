@@ -101,10 +101,77 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
-                    <p>ESTOQUE...</p>
+
+                    @foreach ($categories as $category)
+                        <a href="#" class="btn btn-primary" onclick="showStock({{ $category->id }})">{{ $category->name }}</a>
+                    @endforeach
+
+                    <p></p>
+
+                    @for ($i =0; $i < count($categories); $i++)
+                        <div id="{{ $categories[$i]->id }}" style="display:none;">
+
+                            @if (count($categories[$i]->products) == 0)
+                                <p>Nenhum produto na categoria {{ $categories[$i]->name }}.</p>
+                                
+                            @else
+                                
+
+                                <table class="table-fixed" style="width:100%">
+                                    <thead>
+                                    <tr>
+                                        <th>Produto</th>
+                                        <th>Fornecedor(es)</th>
+                                        <th>Saldo</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                        
+                                        @foreach ($categories[$i]->products as $product)
+                                            <tr>
+                                                <td>
+                                                    {{ $product->name }}
+                                                </td>
+                                                <td>
+                                                    @foreach ($suppliers_list[$i] as $supplier)
+                                                        {{ $supplier }} <br>
+                                                    @endforeach
+                                                </td>
+                                                <td>
+                                                    {{ $product->balance }}
+                                                </td>
+                                            </tr>                                      
+                                        @endforeach
+
+                                        
+                                    </tbody>
+                                </table>
+                            @endif
+                        </div>
+                    @endfor
+
                 </div>
             </div>
         </div>
     </div>
+
+<script>
+
+function showStock(categoria) {
+
+    const size = {{ $size }};
+    for (var i = 1; i <= size; i++ ) {
+    
+        var tabela = document.getElementById(i);
+        if (i == categoria) {
+            tabela.style.display = 'block';
+        } else {
+            tabela.style.display = 'none';
+        }
+
+    }
+
+}
+</script>
 
 </x-app-layout>

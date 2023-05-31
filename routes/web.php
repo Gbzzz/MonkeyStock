@@ -3,9 +3,9 @@
 use App\Http\Controllers\PlansController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\HelpController;
-use App\Http\Controllers\Stock\StockController;
-use App\Http\Controllers\Stock\CategoryController;
-use App\Http\Controllers\Stock\SupplierController;
+use App\Http\Controllers\StockController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\SupplierController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -35,11 +35,9 @@ Route::middleware('auth')->group(function () {
 
 Route::get('/plans', [PlansController::class, 'index'])->name('view_plans');
 
-Route::get('/help', [HelpController::class, 'index'])->name('view_help');
+Route::get('/stock/create', [StockController::class, 'create'])->name('stock.create');
 
 Route::get('/stock', [StockController::class, 'index'])->name('view_stock');
-
-Route::get('/stock/create', [StockController::class, 'create'])->name('stock.create');
 
 Route::post('/stock/store', [StockController::class, 'store'])->name('stock.store');
 

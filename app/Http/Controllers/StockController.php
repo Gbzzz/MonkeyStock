@@ -15,7 +15,22 @@ class StockController extends Controller
 {
     public function index() {
 
-        return view('stock.index');
+        $products = Stock::findOrFail(Auth::user()->id)->products;
+        $categories = Category::all()->where('stock_id', Auth::user()->id);
+        $size = count($categories);
+        $suppliers_list = array();
+
+        foreach($products as $i) {
+            $product_suppliers = array();
+            $product = Product::findOrFail($i->id);
+            $suppliers = $product->suppliers;
+            foreach($suppliers as $supplier) {
+                array_push($product_suppliers, $supplier->name);
+            }
+            array_push($suppliers_list, $product_suppliers);
+        }
+    
+        return view('stock.index', ['products' => $products, 'suppliers_list' => $suppliers_list, 'categories' => $categories, 'size' => $size]);
     }
 
     public function create() {
@@ -26,23 +41,12 @@ class StockController extends Controller
         return view('stock.create', ['categories' => $categories, 'suppliers' => $suppliers]);
     }
 
-    public function supplier(Request $request) {
-
-        $supplier = new Supplier;
-
-        $supplier->name = $request->new_supplier;
-
-        $supplier->save();
-
-        return redirect()->back();
-
-    }
 
     public function store(Request $request) {
 
         $product = Product::create([
             'name' => $request->name,
-            'categories_id' => $request->categories,
+            'category_id' => $request->categories,
             'unit' => $request->unit,
             'refference_value' => $request->refference_value,
             'maximum_stock_level' => $request->maximum_stock_level,

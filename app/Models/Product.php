@@ -12,7 +12,7 @@ class Product extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name','categories_id','unit','refference_value','maximum_stock_level','minimum_stock_level','balance'];
+    protected $fillable = ['name','category_id','unit','refference_value','maximum_stock_level','minimum_stock_level','balance'];
 
     public function categories(): BelongsTo
     {
