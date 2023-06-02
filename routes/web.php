@@ -41,6 +41,10 @@ Route::get('/stock', [StockController::class, 'index'])->name('view_stock');
 
 Route::post('/stock/store', [StockController::class, 'store'])->name('stock.store');
 
+Route::put('/products/update/{id}', [StockController::class, 'update']);
+
+Route::delete('/products/delete/{id}', [StockController::class, 'destroy']);
+
 Route::post('/category/store', [CategoryController::class, 'store'])->name('category.store');
 
 Route::post('/supplier/store', [SupplierController::class, 'store'])->name('supplier.store');

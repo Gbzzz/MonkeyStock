@@ -5,6 +5,23 @@
         </h2>
     </x-slot>
 
+    <style>
+        
+        table {
+            table-layout: fixed;
+        }
+        
+        td, th {
+            border: 1px solid black;
+            text-align: center;
+        }
+
+        td.name:hover {
+
+            background-color: lightgrey;
+        }
+
+    </style>
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
@@ -81,16 +98,12 @@
                                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
                                             <button type="submit" class="btn btn-primary">Salvar</button>
                                         </div>
-                                    
                                     </form>
-                                
                                 </div>
-            
                             </div>
                             </div>
                         </div>
                     </div>
-
 
                 </div>
             </div>
@@ -116,34 +129,95 @@
                                 
                             @else
                                 
-
-                                <table class="table-fixed" style="width:100%">
+                                <table style="width:100%">
                                     <thead>
-                                    <tr>
+                                    <tr style="background-color: #C96EE2;">
                                         <th>Produto</th>
                                         <th>Fornecedor(es)</th>
+                                        <th>Estoque máximo</th>
+                                        <th>Estoque mínimo</th>
                                         <th>Saldo</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                        
                                         @foreach ($categories[$i]->products as $product)
                                             <tr>
-                                                <td>
-                                                    {{ $product->name }}
+                                                <td class="name">
+                                                    <a href="#" title="CLIQUE PARA EDITAR" style="text-decoration: none;color:black" data-bs-toggle="modal" data-bs-target="#{{ $product->id }}Modal">{{ $product->name }}</a>
+                                                    <!-- Modal -->
+                                                    <div class="modal fade" id="{{ $product->id }}Modal" tabindex="-1" aria-labelledby="{{ $product->id }}ModalLabel" aria-hidden="true">
+                                                        <div class="modal-dialog modal-dialog-centered">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                            <h5 class="modal-title" id="{{ $product->id }}ModalLabel">{{ $product->name }}</h5>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <form action="/products/update/{{ $product->id }}" method="POST">
+                                                                    @csrf
+                                                                    @method('PUT')
+
+                                                                    <div class="form-floating flex-grow-1 mx-1 mt-3">
+                                                                        <input name="name" type="text" class="form-control" id="tag1" value="{{ $product->name }}">
+                                                                        <label for="tag1">Nome</label>
+                                                                    </div>
+
+                                                                    <div class="form-floating flex-grow-1 mx-1 mt-3">
+                                                                        <input name="unit" type="text" class="form-control" id="tag1" value="{{ $product->unit }}">
+                                                                        <label for="tag1">Unit</label>
+                                                                    </div>
+
+                                                                    <div class="form-floating flex-grow-1 mx-1 mt-3">
+                                                                        <input name="maximum_stock_level" type="number" class="form-control" id="tag1" value="{{ $product->maximum_stock_level }}">
+                                                                        <label for="tag1">Estoque máximo</label>
+                                                                    </div>
+
+                                                                    <div class="form-floating flex-grow-1 mx-1 mt-3">
+                                                                        <input name="minimum_stock_level" type="number" class="form-control" id="tag1" value="{{ $product->minimum_stock_level }}">
+                                                                        <label for="tag1">Estoque mínimo</label>
+                                                                    </div>
+
+                                                                    <div class="form-floating flex-grow-1 mx-1 mt-3">
+                                                                        <input name="refference_value" type="number" class="form-control" id="tag1" value="{{ $product->refference_value }}">
+                                                                        <label for="tag1">Valor referência</label>
+                                                                    </div>
+
+                                                                    {{-- <div class="form-floating flex-grow-1 mx-1 mt-3">
+                                                                        <select name="categories" id="categories" class="form-control" id="tag1">
+                                                                            @foreach ($categories as $category)
+                                                                            <option class="form-control" value="{{ $category->id }}">{{ $category->name }}</option>
+                                                                            @endforeach
+                                                                        </select>
+                                                                        <label for="tag1">Categoria</label>
+                                                                    </div> --}}
+
+                                                                    <div class="modal-footer">
+                                                                        <button class="btn btn-primary" type="submit">Salvar alterações</button>
+                                                                    </div>
+                                                                
+                                                                </form>
+                                                                
+                                                            </div>
+                                                        </div>
+                                                        </div>
+                                                    </div>
                                                 </td>
                                                 <td>
-                                                    @foreach ($suppliers_list[$i] as $supplier)
-                                                        {{ $supplier }} <br>
+                                                    @foreach ($product->suppliers as $supplier)
+                                                        {{ $supplier->name }} <br>
                                                     @endforeach
+                                                </td>
+                                                <td>
+                                                    {{ $product->maximum_stock_level }}
+                                                </td>
+                                                <td>
+                                                    {{ $product->minimum_stock_level }}
                                                 </td>
                                                 <td>
                                                     {{ $product->balance }}
                                                 </td>
                                             </tr>                                      
                                         @endforeach
-
-                                        
                                     </tbody>
                                 </table>
                             @endif
@@ -168,9 +242,7 @@ function showStock(categoria) {
         } else {
             tabela.style.display = 'none';
         }
-
     }
-
 }
 </script>
 

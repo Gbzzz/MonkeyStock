@@ -77,13 +77,17 @@
                         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
                             {{ __('Fornecedores') }}
                         </h2>
-
-                        @foreach ($suppliers as $supplier)
-                        <div class="form-floating flex-grow-1 mx-1">
-                            <input type="checkbox" class="form-control" name="suppliers[]" value="{{ $supplier->id }}" id="tag1">
-                            <label for="tag1">{{ $supplier->name }}</label>
-                        </div>
-                        @endforeach
+                        
+                        @if (count($suppliers) == 0)
+                            <p>Nenhum fornecedor foi cadastrado.</p>
+                        @else
+                            @foreach ($suppliers as $supplier)
+                            <div class="form-floating flex-grow-1 mx-1">
+                                <input type="checkbox" class="form-control" name="suppliers[]" value="{{ $supplier->id }}" id="tag1">
+                                <label for="tag1">{{ $supplier->name }}</label>
+                            </div>
+                            @endforeach
+                        @endif
 
 
                         <div class="form-floating flex-grow-1 mt-3" style="text-align: right">
@@ -95,9 +99,6 @@
                 </div>
             </div>
         </div>
-        
-
-    
     </form>
 
 <script src="{{ asset('/js/script.js') }}"></script>

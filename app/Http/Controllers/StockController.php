@@ -68,4 +68,19 @@ class StockController extends Controller
 
         return redirect('/stock');
     }
+
+    public function update(Request $request) {
+        
+        Product::findOrFail($request->id)->update($request->all());
+
+        return redirect()->back();
+        
+    }
+
+    public function destroy($id) {
+
+        Product::findOrFail($id)->delete();
+
+        return redirect()->back();
+    }
 }
