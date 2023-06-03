@@ -45,11 +45,10 @@
 
                             <div class="form-floating flex-grow-1 mx-1 mt-3">
                                 <input name="refference_value" type="number" step="0.01" class="form-control" id="tag1">
-                                <label for="tag1">Valor refêrencia</label>
+                                <label for="tag1">Valor referência</label>
                             </div>
 
                             <div class="form-floating flex-grow-1 mx-1 mt-3">
-
                                 <select name="categories" id="categories" class="form-control" id="tag1">
                                     <option class="form-control" disabled selected value></option>
                                     @foreach ($categories as $category)

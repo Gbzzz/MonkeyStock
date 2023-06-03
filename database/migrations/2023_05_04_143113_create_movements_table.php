@@ -15,8 +15,10 @@ return new class extends Migration
             $table->id();
             $table->foreignId('products_id')->constrained('products')->onDelete('cascade');
             $table->foreignId('suppliers_id')->constrained('suppliers')->onDelete('cascade');
+            $table->integer('type');
             $table->bigInteger('quantity');
             $table->double('value');
+            $table->string('description')->nullable();
             $table->date('date');
             $table->timestamps();
         });
