@@ -20,13 +20,24 @@
                         </h2>
     
                         <div class="form-group d-flex">
-                            <div class="form-floating flex-grow-1 mx-1">
+                            <div class="form-floating flex-grow-1 mx-1 mt-3">
                                 <input name="name" type="text" class="form-control" id="tag1">
                                 <label for="tag1">Nome</label>
-                            </div>  
-                            <div class="form-floating flex-grow-1">
+                            </div>
+
+                            <div class="form-floating flex-grow-1 mx-1 mt-3">
                                 <input name="unit" type="text" class="form-control" id="tag2">
                                 <label for="tag2">Unidade</label>
+                            </div>
+
+                            <div class="form-floating flex-grow-1 mx-1 mt-3">
+                                <select name="categories" id="categories" class="form-control" id="tag1">
+                                    <option class="form-control" disabled selected value></option>
+                                    @foreach ($categories as $category)
+                                    <option class="form-control" value="{{ $category->id }}">{{ $category->name }}</option>
+                                    @endforeach
+                                </select>
+                                <label for="tag1">Categoria</label>
                             </div>
                         </div>
 
@@ -39,23 +50,9 @@
                                 <input name="minimum_stock_level" type="number" class="form-control" id="tag2">
                                 <label for="tag2">Estoque Mínimo</label>
                             </div>
-                        </div>
-
-                        <div class="form-group d-flex">
-
                             <div class="form-floating flex-grow-1 mx-1 mt-3">
                                 <input name="refference_value" type="number" step="0.01" class="form-control" id="tag1">
                                 <label for="tag1">Valor referência</label>
-                            </div>
-
-                            <div class="form-floating flex-grow-1 mx-1 mt-3">
-                                <select name="categories" id="categories" class="form-control" id="tag1">
-                                    <option class="form-control" disabled selected value></option>
-                                    @foreach ($categories as $category)
-                                    <option class="form-control" value="{{ $category->id }}">{{ $category->name }}</option>
-                                    @endforeach
-                                </select>
-                                <label for="tag1">Categoria</label>
                             </div>
                         </div>
 

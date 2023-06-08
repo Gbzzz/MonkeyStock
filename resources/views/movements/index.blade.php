@@ -28,6 +28,14 @@
                 <div class="p-6 text-gray-900 dark:text-gray-100">
 
                     <a href="{{ route('movements.create') }}" class="btn btn-primary">Cadastrar movimentação</a>
+
+                    @if (count($movements) > 0)
+                        <form action="/movements/delete/{{ $last->id }}" method="POST" style="display: inline-block">
+                            @csrf
+                            @method('DELETE')
+                            <button class="btn btn-primary" type="submit">Desfazer última movimentação</button>
+                        </form>
+                    @endif
                     
                 </div>
             </div>

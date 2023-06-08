@@ -18,6 +18,11 @@ class MovementController extends Controller
 
         $movements = Movement::all();
 
+        if(count($movements) > 0) {
+            $last = $movements[count($movements) - 1];
+            return view('movements.index', ['products' => $products, 'movements' => $movements, 'last' => $last]);
+        }
+
         return view('movements.index', ['products' => $products, 'movements' => $movements]);
     }
 
@@ -25,19 +30,9 @@ class MovementController extends Controller
 
         $products = Stock::findOrFail(Auth::user()->id)->products;
 
-        $suppliers_list = array();
+        $suppliers = Supplier::all();
 
-        foreach($products as $i) {
-            $product_suppliers = array();
-            $product = Product::findOrFail($i->id);
-            $suppliers = $product->suppliers;
-            foreach($suppliers as $supplier) {
-                array_push($product_suppliers, $supplier->name);
-            }
-            array_push($suppliers_list, $product_suppliers);
-        }
-
-        return view('movements.create', ['products' => $products, 'suppliers' => $suppliers, 'suppliers_list' => $suppliers_list]);
+        return view('movements.create', ['products' => $products, 'suppliers' => $suppliers]);
 
     }
 
@@ -72,5 +67,23 @@ class MovementController extends Controller
         }
         
         return redirect('/movements');
+    }
+
+    public function destroy($id) {
+
+        $movement = Movement::findOrFail($id);
+
+        $product = Product::find($movement->product_id);
+
+        if ($movement->type == 1) {
+
+            $product->update(['balance' => $product->balance - $movement->value]);
+
+        } else {
+
+            $product->update(['balance' => $product->balance + $movement->value]);
+        }
+
+        return redirect()->back();
     }
 }
