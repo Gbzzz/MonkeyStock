@@ -159,7 +159,11 @@
                                                 {{ $product->minimum_stock_level }}
                                             </td>
                                             <td>
-                                                {{ $product->balance }}
+                                                @if ($product->balance <= $product->minimum_stock_level || $product->balance == $product->maximum_stock_level)
+                                                    <label style="color:red">{{ $product->balance }}</label>
+                                                @else
+                                                    {{ $product->balance }}
+                                                @endif
                                             </td>
                                         </tr>
                                     @endforeach
@@ -188,7 +192,7 @@
                                             @foreach ($categories[$i]->products as $product)
                                                 <tr>
                                                     <td class="name">
-                                                        <a href="#" title="CLIQUE PARA EDITAR" style="text-decoration: none;color:black" data-bs-toggle="modal" data-bs-target="#{{ $product->id }}Modal">{{ $product->name }}</a>
+                                                        <a href="#" title="MODIFICAR PRODUTO" style="text-decoration: none;color:black" data-bs-toggle="modal" data-bs-target="#{{ $product->id }}Modal">{{ $product->name }}</a>
                                                         <!-- Modal -->
                                                         <div class="modal fade" id="{{ $product->id }}Modal" tabindex="-1" aria-labelledby="{{ $product->id }}ModalLabel" aria-hidden="true">
                                                             <div class="modal-dialog modal-dialog-centered">
@@ -227,15 +231,6 @@
                                                                             <label for="tag1">Valor referência</label>
                                                                         </div>
 
-                                                                        {{-- <div class="form-floating flex-grow-1 mx-1 mt-3">
-                                                                            <select name="categories" id="categories" class="form-control" id="tag1">
-                                                                                @foreach ($categories as $category)
-                                                                                <option class="form-control" value="{{ $category->id }}">{{ $category->name }}</option>
-                                                                                @endforeach
-                                                                            </select>
-                                                                            <label for="tag1">Categoria</label>
-                                                                        </div> --}}
-
                                                                         <div class="modal-footer">
                                                                             <button class="btn btn-primary" type="submit">Salvar alterações</button>
                                                                         </div>
@@ -243,6 +238,11 @@
                                                                     </form>
                                                                     
                                                                 </div>
+                                                                <form action="/products/delete/{{ $product->id }}" method="POST">
+                                                                    @csrf
+                                                                    @method('DELETE')
+                                                                    <button class="btn btn-secondary" type="submit">Excluir produto</button>
+                                                                </form>
                                                             </div>
                                                             </div>
                                                         </div>
@@ -265,6 +265,17 @@
                                             @endforeach
                                         </tbody>
                                     </table>
+
+                                    <div style="text-align: right">
+                                        <p>
+                                            <form action="/category/delete/{{ $categories[$i]->id }}" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button class="btn btn-primary" type="submit">Excluir categoria</button>
+                                            </form>
+                                        </p>
+                                    </div>
+                                
                                 @endif
                             </div>
                         @endfor
@@ -277,9 +288,9 @@
 <script>
 
 function showStock(categoria) {
-
+    
     const size = {{ $size }};
-    for (var i = 0; i <= size; i++ ) {
+    for (var i = 0; i <= size; i++) {
     
         var tabela = document.getElementById(i);
 
@@ -290,6 +301,7 @@ function showStock(categoria) {
         }
     }
 }
+
 </script>
 
 </x-app-layout>

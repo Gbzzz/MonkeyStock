@@ -19,6 +19,11 @@ class StockController extends Controller
         $categories = Category::all()->where('stock_id', Auth::user()->id);
         $size = count($categories);
         $suppliers_list = array();
+        $categorie_ids = array();
+
+        foreach($categories as $categorie) {
+            array_push($categorie_ids, $categorie->id);
+        }
 
         foreach($products as $i) {
             $product_suppliers = array();
@@ -30,7 +35,7 @@ class StockController extends Controller
             array_push($suppliers_list, $product_suppliers);
         }
     
-        return view('stock.index', ['products' => $products, 'suppliers_list' => $suppliers_list, 'categories' => $categories, 'size' => $size]);
+        return view('stock.index', ['products' => $products, 'suppliers_list' => $suppliers_list, 'categories' => $categories, 'size' => $size, 'ids' => $categorie_ids]);
     }
 
     public function create() {
@@ -64,7 +69,6 @@ class StockController extends Controller
 
             $product->suppliers()->attach($supplier->id);
         }
-
 
         return redirect('/stock');
     }

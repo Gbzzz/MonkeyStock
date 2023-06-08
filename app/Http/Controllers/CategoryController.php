@@ -19,4 +19,11 @@ class CategoryController extends Controller
 
         return redirect()->back();
     }
+
+    public function destroy($id) {
+
+        Category::findOrFail($id)->delete();
+
+        return redirect()->back();
+    }
 }

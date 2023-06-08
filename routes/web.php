@@ -44,11 +44,12 @@ Route::put('/products/update/{id}', [StockController::class, 'update']);
 Route::delete('/products/delete/{id}', [StockController::class, 'destroy']);
 
 Route::post('/category/store', [CategoryController::class, 'store'])->name('category.store');
+Route::post('/category/delete/{id}', [CategoryController::class, 'destroy'])->name('category.destroy');
 
 Route::post('/supplier/store', [SupplierController::class, 'store'])->name('supplier.store');
 
 Route::get('/movements', [MovementController::class, 'index'])->name('movements.index');
 Route::get('/movements/create', [MovementController::class, 'create'])->name('movements.create');
-Route::get('/movements/store', [MovementController::class, 'store'])->name('movements.store');
+Route::post('/movements/store', [MovementController::class, 'store'])->name('movements.store');
 
 require __DIR__.'/auth.php';

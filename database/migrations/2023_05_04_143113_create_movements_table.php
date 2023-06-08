@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('movements', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('products_id')->constrained('products')->onDelete('cascade');
-            $table->foreignId('suppliers_id')->constrained('suppliers')->onDelete('cascade');
+            $table->foreignId('product_id')->constrained('products')->onDelete('cascade');
+            $table->string('product_name');
             $table->integer('type');
             $table->bigInteger('quantity');
             $table->double('value');

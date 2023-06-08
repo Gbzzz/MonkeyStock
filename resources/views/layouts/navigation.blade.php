@@ -21,7 +21,7 @@
 
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('view_plans')" :active="request()->routeIs('view_plans')">
-                        {{ __('Meu plano') }}
+                        {{ __('Planos') }}
                     </x-nav-link>
                 </div>
 
