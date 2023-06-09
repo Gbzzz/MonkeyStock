@@ -18,7 +18,7 @@
                         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
                             {{ __('Informações do produto') }}
                         </h2>
-    
+
                         <div class="form-group d-flex">
                             <div class="form-floating flex-grow-1 mx-1 mt-3">
                                 <input name="name" type="text" class="form-control" id="tag1">
@@ -59,7 +59,7 @@
                         <div class="form-floating flex-grow-1 mt-3" style="text-align: right">
                             <a href="#" class="btn btn-primary" id="next" onclick="next()">Avançar</a>
                         </div>
-    
+
                     </div>
                 </div>
             </div>
@@ -69,11 +69,11 @@
             <div class="max-w-xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-6 text-gray-900 dark:text-gray-100">
-                        
+
                         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
                             {{ __('Fornecedores') }}
                         </h2>
-                        
+
                         @if (count($suppliers) == 0)
                             <p>Nenhum fornecedor foi cadastrado.</p>
                         @else
@@ -87,10 +87,10 @@
 
 
                         <div class="form-floating flex-grow-1 mt-3" style="text-align: right">
-                            <a href="#" class="btn btn-primary" id="next"  onclick="back()">Voltar</a>
-                            <button type="submit" class="btn btn-primary">Salvar</button>
+                            <a href="#" class="btn btn-secondary" id="next"  onclick="back()">Voltar</a>
+                            <button type="submit" class="btn btn-primary" style="background-color: #C96EE2; border: none;">Salvar</button>
                         </div>
-                        
+
                     </div>
                 </div>
             </div>

@@ -6,11 +6,11 @@
     </x-slot>
 
     <style>
-        
+
         table {
             table-layout: fixed;
         }
-        
+
         td, th {
             border: 1px solid black;
             text-align: center;
@@ -27,16 +27,16 @@
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
 
-                    <a href="/stock/create" class="btn btn-primary">Cadastrar produto</a>
+                    <a href="/stock/create" class="btn btn-primary" style="background-color: #C96EE2; border: none;">Cadastrar produto</a>
 
                     {{-- MODAL CATEGORIA --}}
 
                     <div class="form-floating flex-grow-1 mt-3" id="new_category" style="display: inline-block">
                         <!-- Button trigger modal -->
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#categoryModal">
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#categoryModal" style="background-color: #C96EE2; border: none;">
                             Cadastrar categoria
                         </button>
-                    
+
                         <!-- Modal -->
                         <div class="modal fade" id="categoryModal" tabindex="-1" aria-labelledby="categoryModalLabel" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered">
@@ -56,11 +56,11 @@
 
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-                                            <button type="submit" class="btn btn-primary">Salvar</button>
+                                            <button type="submit" class="btn btn-primary" style="background-color: #C96EE2; border: none;">Salvar</button>
                                         </div>
-                                    
+
                                     </form>
-    
+
                                 </div>
                             </div>
                             </div>
@@ -71,10 +71,10 @@
 
                     <div class="form-floating flex-grow-1 mt-3" id="new_supplier" style="display: inline-block">
                         <!-- Button trigger modal -->
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#supplierModal">
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#supplierModal" style="background-color: #C96EE2; border: none;">
                             Cadastrar fornecedor
                         </button>
-                    
+
                         <!-- Modal -->
                         <div class="modal fade" id="supplierModal" tabindex="-1" aria-labelledby="supplierModalLabel" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered">
@@ -94,8 +94,8 @@
                                         </div>
 
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-                                            <button type="submit" class="btn btn-primary">Salvar</button>
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" >Fechar</button>
+                                            <button type="submit" class="btn btn-primary"  style="background-color: #C96EE2; border: #C96EE2;">Salvar</button>
                                         </div>
                                     </form>
                                 </div>
@@ -176,7 +176,7 @@
 
                                 @if (count($categories[$i]->products) == 0)
                                     <p>Nenhum produto na categoria {{ $categories[$i]->name }}.</p>
-                                    
+
                                 @else
                                     <table style="width:100%">
                                         <thead>
@@ -234,9 +234,9 @@
                                                                         <div class="modal-footer">
                                                                             <button class="btn btn-primary" type="submit">Salvar alterações</button>
                                                                         </div>
-                                                                    
+
                                                                     </form>
-                                                                    
+
                                                                 </div>
                                                                 <form action="/products/delete/{{ $product->id }}" method="POST">
                                                                     @csrf
@@ -261,7 +261,7 @@
                                                     <td>
                                                         {{ $product->balance }}
                                                     </td>
-                                                </tr>                                      
+                                                </tr>
                                             @endforeach
                                         </tbody>
                                     </table>
@@ -275,7 +275,7 @@
                                             </form>
                                         </p>
                                     </div>
-                                
+
                                 @endif
                             </div>
                         @endfor
@@ -288,10 +288,10 @@
 <script>
 
 function showStock(categoria) {
-    
+
     const size = {{ $size }};
     for (var i = 0; i <= size; i++) {
-    
+
         var tabela = document.getElementById(i);
 
         if (i == categoria) {
