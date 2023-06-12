@@ -6,11 +6,11 @@
     </x-slot>
 
     <style>
-        
+
         table {
             table-layout: fixed;
         }
-        
+
         td, th {
             border: 1px solid black;
             text-align: center;
@@ -27,7 +27,7 @@
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
 
-                    <a href="{{ route('movements.create') }}" class="btn btn-primary">Cadastrar movimentação</a>
+                    <a href="{{ route('movements.create') }}" class="btn btn-primary" style="background-color: #C96EE2; border: none;">Cadastrar movimentação</a>
 
                     @if (count($movements) > 0)
                         <form action="/movements/delete/{{ $last->id }}" method="POST" style="display: inline-block">
@@ -36,7 +36,7 @@
                             <button class="btn btn-primary" type="submit">Desfazer última movimentação</button>
                         </form>
                     @endif
-                    
+
                 </div>
             </div>
         </div>
