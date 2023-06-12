@@ -52,63 +52,67 @@
                         {{ __('Histórico de movimentações') }}
                     </h2>
 
-                    <table style="width:100%">
-                        <thead>
-                            <tr style="background-color: #C96EE2;">
-                                <th>Data</th>
-                                <th>Produto</th>
-                                <th>Tipo</th>
-                                <th>Quantidade</th>
-                                <th>Valor</th>
-                                <th>Fornecedor(es)</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($movements as $movement)
-                                <tr>
-                                    <td class="name">
-                                        <a href="#" style="text-decoration: none;color:black" data-bs-toggle="modal" data-bs-target="#{{ $movement->id }}Modal">{{ date('d/m/Y', strtotime($movement->date)) }}</a>
-                                        <!-- Modal -->
-                                        <div class="modal fade" id="{{ $movement->id }}Modal" tabindex="-1" aria-labelledby="{{ $movement->id }}ModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog modal-dialog-centered">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="{{ $movement->id }}ModalLabel">Descrição</h5>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                </div>
-                                                <div class="modal-body">
+                    @if (count($movements) == 0)
+                        <p>Nenhuma movimentação cadastrada.</p>
+                    @else
 
-                                                    <p>{{ $movement->description }}</p>
-
-                                                </div>
-                                            </div>
-                                    </td>
-                                    <td>
-                                        {{ $movement->product_name }}
-                                    </td>
-                                    <td>
-                                        @if ($movement->type == 1)
-                                            ENTRADA
-                                        @else
-                                            SAÍDA
-                                        @endif
-                                    </td>
-                                    <td>
-                                        {{ $movement->quantity }}
-                                    </td>
-                                    <td>
-                                        {{ $movement->value }}
-                                    </td>
-                                    <td>
-                                        @foreach ($movement->suppliers as $supplier)
-                                            {{ $supplier->name }} <br>
-                                        @endforeach
-                                    </td>
+                        <table style="width:100%">
+                            <thead>
+                                <tr style="background-color: #C96EE2;">
+                                    <th>Data</th>
+                                    <th>Produto</th>
+                                    <th>Tipo</th>
+                                    <th>Quantidade</th>
+                                    <th>Valor</th>
+                                    <th>Fornecedor(es)</th>
                                 </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                                @foreach ($movements as $movement)
+                                    <tr>
+                                        <td class="name">
+                                            <a href="#" style="text-decoration: none;color:black" data-bs-toggle="modal" data-bs-target="#{{ $movement->id }}Modal">{{ date('d/m/Y', strtotime($movement->date)) }}</a>
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="{{ $movement->id }}Modal" tabindex="-1" aria-labelledby="{{ $movement->id }}ModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="{{ $movement->id }}ModalLabel">Descrição</h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
 
+                                                        <p>{{ $movement->description }}</p>
+
+                                                    </div>
+                                                </div>
+                                        </td>
+                                        <td>
+                                            {{ $movement->product_name }}
+                                        </td>
+                                        <td>
+                                            @if ($movement->type == 1)
+                                                ENTRADA
+                                            @else
+                                                SAÍDA
+                                            @endif
+                                        </td>
+                                        <td>
+                                            {{ $movement->quantity }}
+                                        </td>
+                                        <td>
+                                            {{ $movement->value }}
+                                        </td>
+                                        <td>
+                                            @foreach ($movement->suppliers as $supplier)
+                                                {{ $supplier->name }} <br>
+                                            @endforeach
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    @endif
                 </div>
             </div>
         </div>

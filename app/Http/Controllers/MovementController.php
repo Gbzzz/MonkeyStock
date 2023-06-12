@@ -77,12 +77,14 @@ class MovementController extends Controller
 
         if ($movement->type == 1) {
 
-            $product->update(['balance' => $product->balance - $movement->value]);
+            $product->update(['balance' => $product->balance - $movement->quantity]);
 
         } else {
 
-            $product->update(['balance' => $product->balance + $movement->value]);
+            $product->update(['balance' => $product->balance + $movement->quantity]);
         }
+
+        $movement->delete();
 
         return redirect()->back();
     }
